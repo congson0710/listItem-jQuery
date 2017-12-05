@@ -15,8 +15,7 @@
                 <!-- LeftContent -->
                 <h2>Product List</h2>
                 <div class="list-group" id = "listItemLeft">
-                    <!-- <a href="#" class="list-group-item active">First item</a>
-                    <a href="#" class="list-group-item">First item</a>  -->
+                    
                 </div>
                 <br>
                 <div class="input-group">
@@ -41,7 +40,7 @@
                 <!-- RightContent -->
                 <h2>Product List</h2>
                 <div class="list-group" id = "listItemRight">
-                  
+                    <a href="#" id = "ancResult1"></a>
                 </div>
             </div>    
         </div>
@@ -53,35 +52,45 @@
         var itemList = [];
         $(document).ready(function () {
             // Add item to product list
+            $("#listItemLeft").append('<a href="#" class="list-group-item" id = "ancProd0">Logitech</a>');
+            itemList.push("#ancProd0");
+            $("#listItemLeft").append('<a href="#" class="list-group-item" id = "ancProd1">Razer</a>');
+            itemList.push("#ancProd1");
+            $("#listItemLeft").append('<a href="#" class="list-group-item" id = "ancProd2">Corsair</a>');
+            itemList.push("#ancProd2");
             $("#btnAdd").click(function addItem(){
-                // var contentToAdd = $("#input").val();
-                $("#listItemLeft").append('<a href="#" class="list-group-item active">First item</a>');
-                // itemList.push(contentToAdd);
-                // console.log("asdasd");
-
+                var contentToAdd = $("#input").val();
+                var ancProduct = $('<a href="#" class="list-group-item"></a>');
+                ancProduct.text(contentToAdd);
+                ancProduct.attr("id", "ancProd" + itemList.length);
+                $("#listItemLeft").append(ancProduct);
+                itemList.push("#ancProd" + itemList.length);
+                $("#input").val('');
             })
             // Switch left to right
-           $("#ancProd1").click(function chooseItemToSwitchLtoR(){
-               if($("#ancProd1").addClass("list-group-item-success active")){
-                   $("#btnLtoR").click(function onClickSwitchLeftToRight(){
-                        var content = $("#ancProd1").text();
-                        $("#ancResult1").addClass("list-group-item list-group-item-success");
-                        $("#ancResult1").text(content);
-                   })
-               }
-           }) 
-            // Switch right to left
-            $("#ancResult1").click(function chooseItemToSwitchRtoL(){
-                if($("#ancResult1").addClass("active")){
-                    $("#btnRtoL").click(function onclickSwitchRightToLeft(){
-                        var content = $("#ancResult1").text();
-                        $("#ancResult1").removeClass("list-group-item list-group-item-success active");
-                        $("#ancProd1").text(content);
-                        $("#ancResult1").text("");
-                    })
+           $(".list-group-item").click(function chooseItemToSwitchLtoR(){
+                for(var i = 0; i < itemList.length; i++){
+                    if($(itemList[i]).hasClass("active")){
+                        $(itemList[i]).removeClass("active"); 
+                    }
                 }
-            })
-        });    
+               $(this).addClass("active");
+           }) 
+           for(var i = 0; i < itemList.length; i++){
+               if($("ancProd" + i).hasClass("active")){
+
+               }
+           }
+            // Switch right to left
+            // $(".list-group-item").click(function chooseItemToSwitchRtoL(){
+            //     if($(this).addClass("active")){
+            //         $("#btnRtoL").click(function onclickSwitchRightToLeft(){
+            //             $(this).removeClass("list-group-item list-group-item-success active");
+            //             $(this).text("");
+            //         })
+            //     }
+            // })
+        })();    
     </script>
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
