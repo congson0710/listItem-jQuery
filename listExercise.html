@@ -14,10 +14,13 @@
             <div class = "col-md-4" style = "text-align: center">
                 <!-- LeftContent -->
                 <h2>Product List</h2>
-                <div class="list-group">
-                  <a href="#" class="list-group-item" id = "ancProd1">Logitech</a>
-                  <a href="#" class="list-group-item" id = "ancProd2">Razer</a>
-                  <a href="#" class="list-group-item" id = "ancProd3">Corsair</a>
+                <div class="list-group" id = "listItemLeft">
+                    <a href="#" class="list-group-item active">First item</a>
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="input">
+                    <span><button class="btn btn-danger input-group-addon" id = "btnAdd">Add Item</button></span>
                 </div>
             </div>
             <div class = "col-md-4" style = "text-align: center">
@@ -34,10 +37,8 @@
             <div class = "col-md-4" style = "text-align: center">
                 <!-- RightContent -->
                 <h2>Product List</h2>
-                <div class="list-group">
-                  <a href="#" id = "ancResult1"></a>
-                  <a href="#" id = "ancResult2"></a>
-                  <a href="#" id = "ancResult3"></a>
+                <div class="list-group" id = "listItemRight">
+                  
                 </div>
             </div>    
         </div>
@@ -46,11 +47,17 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     
     <script>
+        var itemList = [];
         $(document).ready(function () {
+            // Add item to product list
+            $("#btnAdd").click(function(){
+                var contentToAdd = $("#input").val();
+                itemList.push(contentToAdd);
+            })
             // Switch left to right
-           $("#ancProd1").click(function onClickSwitchLeftToRight(){
+           $("#ancProd1").click(function chooseItemToSwitchLtoR(){
                if($("#ancProd1").addClass("list-group-item-success active")){
-                   $("#btnLtoR").click(function(){
+                   $("#btnLtoR").click(function onClickSwitchLeftToRight(){
                         var content = $("#ancProd1").text();
                         $("#ancResult1").addClass("list-group-item list-group-item-success");
                         $("#ancResult1").text(content);
@@ -58,9 +65,9 @@
                }
            }) 
             // Switch right to left
-            $("#ancResult1").click(function onclickSwitchRightToLeft(){
-                if($("#ancProd1").addClass("active")){
-                    $("#btnRtoL").click(function(){
+            $("#ancResult1").click(function chooseItemToSwitchRtoL(){
+                if($("#ancResult1").addClass("active")){
+                    $("#btnRtoL").click(function onclickSwitchRightToLeft(){
                         var content = $("#ancResult1").text();
                         $("#ancResult1").removeClass("list-group-item list-group-item-success active");
                         $("#ancProd1").text(content);
