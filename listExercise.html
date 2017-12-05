@@ -9,18 +9,21 @@
     <title>Document</title>
 </head>
 <body>
-    <div class = "container">
+    <div class = "container" id = "idContainer">
         <div class = "row" >
-            <div class = "col-md-4" style = "text-align: center">
+            <div class = "col-md-4" style = "text-align: center" id = "leftContent">
                 <!-- LeftContent -->
                 <h2>Product List</h2>
                 <div class="list-group" id = "listItemLeft">
-                    <a href="#" class="list-group-item active">First item</a>
+                    <!-- <a href="#" class="list-group-item active">First item</a>
+                    <a href="#" class="list-group-item">First item</a>  -->
                 </div>
                 <br>
                 <div class="input-group">
                     <input type="text" class="form-control" id="input">
-                    <span><button class="btn btn-danger input-group-addon" id = "btnAdd">Add Item</button></span>
+                    <span>
+                        <button class="btn btn-danger input-group-addon" id = "btnAdd">Add Item</button>
+                    </span>
                 </div>
             </div>
             <div class = "col-md-4" style = "text-align: center">
@@ -34,7 +37,7 @@
                 </div>
                 <br>
             </div>
-            <div class = "col-md-4" style = "text-align: center">
+            <div class = "col-md-4" style = "text-align: center" id = "rightContent">
                 <!-- RightContent -->
                 <h2>Product List</h2>
                 <div class="list-group" id = "listItemRight">
@@ -50,9 +53,12 @@
         var itemList = [];
         $(document).ready(function () {
             // Add item to product list
-            $("#btnAdd").click(function(){
-                var contentToAdd = $("#input").val();
-                itemList.push(contentToAdd);
+            $("#btnAdd").click(function addItem(){
+                // var contentToAdd = $("#input").val();
+                $("#listItemLeft").append('<a href="#" class="list-group-item active">First item</a>');
+                // itemList.push(contentToAdd);
+                // console.log("asdasd");
+
             })
             // Switch left to right
            $("#ancProd1").click(function chooseItemToSwitchLtoR(){
